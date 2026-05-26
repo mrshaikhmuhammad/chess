@@ -17,7 +17,7 @@ public abstract class Piece {
     }
 
     //True means both belong to same party
-    private boolean checkEnemy(Piece piece){
+    public boolean checkEnemy(Piece piece){
         if (piece != null){
             return this.color != piece.getColor();
         }
@@ -49,9 +49,6 @@ public abstract class Piece {
         }
         return false;
     }
-
-
-
 
     public abstract List<int[]> getMoves(int row, int col, Board board);
 }
