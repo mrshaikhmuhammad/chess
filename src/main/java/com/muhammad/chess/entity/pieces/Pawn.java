@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pawn extends Piece{
-    boolean initial;
+    private boolean initial;
 
     public Pawn(Color color) {
         super(color);
         initial = true;
+    }
+
+    public void setInitial(boolean value){
+        initial = value;
     }
 
     @Override
