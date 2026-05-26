@@ -1,11 +1,12 @@
-package com.muhammad.chess.entity.pieces;
+package com.muhammad.chess.model.impl;
 
-import com.muhammad.chess.entity.Board;
-import com.muhammad.chess.entity.Color;
+import com.muhammad.chess.model.Board;
+import com.muhammad.chess.enums.Color;
+import com.muhammad.chess.model.Piece;
 
 import java.util.List;
 
-public class Knight extends Piece{
+public class Knight extends Piece {
     public Knight(Color color) {
         super(color);
     }

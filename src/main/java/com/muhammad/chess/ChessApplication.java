@@ -1,7 +1,7 @@
 package com.muhammad.chess;
 
-import com.muhammad.chess.entity.Board;
-import com.muhammad.chess.entity.pieces.Piece;
+import com.muhammad.chess.model.Board;
+import com.muhammad.chess.model.Piece;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

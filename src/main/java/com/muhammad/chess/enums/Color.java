@@ -1,4 +1,4 @@
-package com.muhammad.chess.entity;
+package com.muhammad.chess.enums;
 
 public enum Color {
     WHITE, BLACK

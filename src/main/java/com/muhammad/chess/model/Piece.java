@@ -1,7 +1,6 @@
-package com.muhammad.chess.entity.pieces;
+package com.muhammad.chess.model;
 
-import com.muhammad.chess.entity.Board;
-import com.muhammad.chess.entity.Color;
+import com.muhammad.chess.enums.Color;
 
 import java.util.List;
 

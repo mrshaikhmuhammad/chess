@@ -1,6 +1,8 @@
-package com.muhammad.chess.entity;
+package com.muhammad.chess.model;
 
-import com.muhammad.chess.entity.pieces.Piece;
+import com.muhammad.chess.enums.Color;
+import com.muhammad.chess.enums.Result;
+import com.muhammad.chess.enums.Status;
 
 import java.util.List;
 
@@ -15,25 +17,25 @@ public class Game {
         round = Color.WHITE;
     }
 
-    public Move makeMove(int oldRow, int oldCol, int newRow, int newCol) {
+    public Result makeMove(int oldRow, int oldCol, int newRow, int newCol) {
 
         // 1. check game active
         if (status != status.ACTIVE)
-            return Move.GAME_OVER;
+            return Result.GAME_OVER;
 
         // 2. check piece exists
         Piece piece = board.getPiece(oldRow, oldCol);
         if (piece == null)
-            return Move.INVALID;
+            return Result.INVALID;
 
         // 3. check correct turn
         if (piece.getColor() != round)
-            return Move.WRONG_TURN;
+            return Result.WRONG_TURN;
 
         // 4. check move is in valid moves list
         List<int[]> moves = piece.getMoves(newRow, newCol, board);
         if (!checkMove(moves, newRow, newCol))
-            return Move.INVALID;
+            return Result.INVALID;
 
         // 5. Board handles everything else
         board.movePiece(oldRow, oldCol, newRow, newCol);
@@ -41,7 +43,7 @@ public class Game {
         // 6. flip turn
         round = (round == Color.WHITE) ? Color.BLACK : Color.WHITE;
 
-        return Move.SUCCESS;
+        return Result.SUCCESS;
     }
 
     public boolean checkMove(List<int[]> moves, int row, int col){
