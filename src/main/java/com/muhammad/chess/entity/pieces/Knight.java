@@ -1,12 +1,12 @@
-package com.muhammad.chess.entity.peices;
+package com.muhammad.chess.entity.pieces;
 
 import com.muhammad.chess.entity.Board;
 import com.muhammad.chess.entity.Color;
 
 import java.util.List;
 
-public class Rook extends Peice{
-    public Rook(Color color){
+public class Knight extends Piece{
+    public Knight(Color color) {
         super(color);
     }
 
@@ -17,6 +17,6 @@ public class Rook extends Peice{
 
     @Override
     public String toString(){
-        return "R";
+        return "N";
     }
 }

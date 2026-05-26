@@ -1,4 +1,4 @@
-package com.muhammad.chess.entity.peices;
+package com.muhammad.chess.entity.pieces;
 
 import com.muhammad.chess.entity.Board;
 import com.muhammad.chess.entity.Color;
@@ -6,7 +6,7 @@ import com.muhammad.chess.entity.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pawn extends Peice{
+public class Pawn extends Piece{
     boolean initial;
 
     public Pawn(Color color) {

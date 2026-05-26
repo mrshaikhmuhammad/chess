@@ -1,22 +1,22 @@
 package com.muhammad.chess.entity;
 
-import com.muhammad.chess.entity.peices.*;
+import com.muhammad.chess.entity.pieces.*;
 
 public class Board {
-    private Peice[][] board;
+    private Piece[][] board;
 
     public Board(){
-        board = new Peice[8][8];
+        board = new Piece[8][8];
         this.setBoard();
     }
-    
+
     public void setBoard(){
         for(int i=0; i<8; i++){
-            board[1][i] = new Pawn(Color.BLACK);
-            board[6][i] = new Pawn(Color.WHITE);
+            board[1][i] = new Pawn(Color.WHITE);
+            board[6][i] = new Pawn(Color.BLACK);
         }
 
-        // White Peices
+        // White Pieces
         board[0][0] = new Rook(Color.WHITE);
         board[0][1] = new Knight(Color.WHITE);
         board[0][2] = new Bishop(Color.WHITE);
@@ -26,7 +26,7 @@ public class Board {
         board[0][6] = new Knight(Color.WHITE);
         board[0][7] = new Rook(Color.WHITE);
 
-        // Black Peices
+        // Black Pieces
         board[7][0] = new Rook(Color.BLACK);
         board[7][1] = new Knight(Color.BLACK);
         board[7][2] = new Bishop(Color.BLACK);
@@ -37,7 +37,7 @@ public class Board {
         board[7][7] = new Rook(Color.BLACK);
     }
 
-    public Peice getPeice(int row, int col){
+    public Piece getPiece(int row, int col){
         return board[row][col];
     }
 
