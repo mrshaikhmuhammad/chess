@@ -1,13 +1,18 @@
 package com.muhammad.chess.entity;
 
 import com.muhammad.chess.entity.pieces.*;
+import java.util.*;
+
 
 public class Board {
     private Piece[][] board;
+    private List<Piece> deadPeices;
 
     public Board(){
+        deadPeices = new ArrayList<>();
         board = new Piece[8][8];
-        this.setBoard();
+        setBoard();
+
     }
 
     public void setBoard(){
