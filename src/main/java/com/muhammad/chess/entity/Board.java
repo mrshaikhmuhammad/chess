@@ -15,6 +15,44 @@ public class Board {
 
     }
 
+    public void move(int oldRow, int oldCol, int newRow, int newCol){
+        if (checkEmpty(newRow, newCol)) {
+            board[newRow][newCol] = board[oldRow][oldCol];
+            board[oldRow][oldCol] = null;
+//            deadPeices.add(board[newRow][newCol]);
+        }
+        else if(board[oldRow][oldCol].checkKill(newRow, newCol, this)){
+
+        }
+        try {
+            // is location in the box
+            if (checkLocation(newRow, newCol) && checkLocation(oldRow, oldCol)) {
+                // is that box empty to move
+                if (checkEmpty(newRow, newCol)) {
+                    board[newRow][newCol] = board[oldRow][oldCol];
+                    board[oldRow][oldCol] = null;
+                }
+                // do I need to kill enemy to move their
+                else if(board[oldRow][oldCol].checkEnemy(board[newRow][newCol])){
+                    deadPeices.add(board[newRow][newCol]);
+                    board[newRow][newCol] = board[oldRow][oldCol];
+                    board[oldRow][oldCol] = null;
+                }
+                // it's your friend sitting their
+                else{
+                    throw new Exception("Invalid location movement\nTrying to kill your friend");
+                }
+
+              // location is out of box
+            } else {
+                throw new Exception("Invalid location movement");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     public void setBoard(){
         for(int i=0; i<8; i++){
             board[1][i] = new Pawn(Color.WHITE);
@@ -45,6 +83,15 @@ public class Board {
     public Piece getPiece(int row, int col){
         return board[row][col];
     }
+
+    public boolean checkEmpty(int row, int col){
+        return board[row][col] == null;
+    }
+
+    private boolean checkLocation(int row, int col){
+        return ( row>=0 && row<8 ) && ( col>=0 && col<8 );
+    }
+
 
     @Override
     public String toString(){
