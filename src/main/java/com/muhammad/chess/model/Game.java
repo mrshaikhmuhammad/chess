@@ -1,8 +1,6 @@
 package com.muhammad.chess.model;
 
-import com.muhammad.chess.enums.Color;
-import com.muhammad.chess.enums.Result;
-import com.muhammad.chess.enums.Status;
+import com.muhammad.chess.enums.*;
 
 import java.util.List;
 
@@ -33,7 +31,7 @@ public class Game {
             return Result.WRONG_TURN;
 
         // 4. check move is in valid moves list
-        List<int[]> moves = piece.getMoves(newRow, newCol, board);
+        List<int[]> moves = piece.getMoves(oldRow, oldCol, board);
         if (!checkMove(moves, newRow, newCol))
             return Result.INVALID;
 
@@ -59,6 +57,7 @@ public class Game {
     public Status getStatus(){
         return status;
     }
-
-
+    public Board getBoard(){
+        return board;
+    }
 }
