@@ -18,6 +18,11 @@ public class Queen extends Piece {
 
     @Override
     public String toString(){
-        return "Q";
+        if(super.getColor() == Color.WHITE){
+            return "♕";
+        }
+        else{
+            return "♛";
+        }
     }
 }

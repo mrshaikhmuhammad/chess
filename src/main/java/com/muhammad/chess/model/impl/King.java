@@ -18,6 +18,11 @@ public class King extends Piece {
 
     @Override
     public String toString(){
-        return "K";
+        if(super.getColor() == Color.WHITE){
+            return "♔";
+        }
+        else{
+            return "♚";
+        }
     }
 }
