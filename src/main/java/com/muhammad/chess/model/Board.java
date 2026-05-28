@@ -95,7 +95,10 @@ public class Board {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
+        sb.append("    a b c d e f g h\n");
+        sb.append("  ╔═════════════════╗\n");
         for(int i=0; i<8; i++){
+            sb.append(i+1).append(" ║ ");
             for(int j=0; j<8; j++){
                 if(board[i][j] != null){
                     sb.append(board[i][j]).append(" ");
@@ -104,8 +107,12 @@ public class Board {
                     sb.append(". ");
                 }
             }
-            sb.append("\n");
+            sb.append("║ ").append(i+1).append("\n");
         }
+        sb.append("  ╚═════════════════╝\n");
+        sb.append("    a b c d e f g h\n");
+
         return sb.toString();
     }
 }
+

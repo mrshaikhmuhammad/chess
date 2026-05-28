@@ -15,7 +15,14 @@ public class Game {
         round = Color.WHITE;
     }
 
-    public Result makeMove(int oldRow, int oldCol, int newRow, int newCol) {
+    public Result makeMove(String oldLocation, String newLocation) {
+        int[] coords = parseMove(oldLocation);
+        int oldRow = coords[0];
+        int oldCol = coords[1];
+
+        coords = parseMove(newLocation);
+        int newRow = coords[0];
+        int newCol = coords[1];
 
         // 1. check game active
         if (status != status.ACTIVE)
@@ -42,6 +49,12 @@ public class Game {
         round = (round == Color.WHITE) ? Color.BLACK : Color.WHITE;
 
         return Result.SUCCESS;
+    }
+
+    private int[] parseMove(String move){
+        int col = Character.toLowerCase(move.charAt(0))  - 'a';
+        int row = Integer.parseInt(String.valueOf(move.charAt(1)));
+        return new int[]{row, col};
     }
 
     public boolean checkMove(List<int[]> moves, int row, int col){
