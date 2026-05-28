@@ -2,6 +2,7 @@ package com.muhammad.chess.model;
 
 import com.muhammad.chess.enums.*;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Game {
@@ -16,13 +17,20 @@ public class Game {
     }
 
     public Result makeMove(String oldLocation, String newLocation) {
-        int[] coords = parseMove(oldLocation);
-        int oldRow = coords[0];
-        int oldCol = coords[1];
+        int oldRow, oldCol, newRow, newCol;
 
-        coords = parseMove(newLocation);
-        int newRow = coords[0];
-        int newCol = coords[1];
+        try{
+            int[] coords = parseMove(oldLocation);
+            oldRow = coords[0];
+            oldCol = coords[1];
+
+            coords = parseMove(newLocation);
+            newRow = coords[0];
+            newCol = coords[1];
+        }
+        catch (InputMismatchException e) {
+            return Result.INVALID;
+        }
 
         // 1. check game active
         if (status != status.ACTIVE)
@@ -51,10 +59,15 @@ public class Game {
         return Result.SUCCESS;
     }
 
-    private int[] parseMove(String move){
-        int col = Character.toLowerCase(move.charAt(0))  - 'a';
-        int row = Integer.parseInt(String.valueOf(move.charAt(1))) - 1;
-        return new int[]{row, col};
+    private int[] parseMove(String move)throws InputMismatchException {
+        try{
+            int col = Character.toLowerCase(move.charAt(0))  - 'a';
+            int row = Integer.parseInt(String.valueOf(move.charAt(1))) - 1;
+            return new int[]{row, col};
+        }
+        catch (Exception e){
+            throw new InputMismatchException();
+        }
     }
 
     public boolean checkMove(List<int[]> moves, int row, int col){
