@@ -53,7 +53,7 @@ public class Game {
 
     private int[] parseMove(String move){
         int col = Character.toLowerCase(move.charAt(0))  - 'a';
-        int row = Integer.parseInt(String.valueOf(move.charAt(1)));
+        int row = Integer.parseInt(String.valueOf(move.charAt(1))) - 1;
         return new int[]{row, col};
     }
 
