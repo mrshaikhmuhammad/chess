@@ -1,11 +1,8 @@
 package com.muhammad.chess.model.impl;
 
-import com.muhammad.chess.model.Board;
-import com.muhammad.chess.enums.Color;
-import com.muhammad.chess.model.Piece;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.muhammad.chess.enums.*;
+import com.muhammad.chess.model.*;
+import java.util.*;
 
 public class Pawn extends Piece {
     private boolean initial;
