@@ -62,8 +62,8 @@ public class Board {
         board[0][0] = new Rook(Color.WHITE);
         board[0][1] = new Knight(Color.WHITE);
         board[0][2] = new Bishop(Color.WHITE);
-        board[0][3] = new King(Color.WHITE);
-        board[0][4] = new Queen(Color.WHITE);
+        board[0][3] = new Queen(Color.WHITE);
+        board[0][4] = new King(Color.WHITE);
         board[0][5] = new Bishop(Color.WHITE);
         board[0][6] = new Knight(Color.WHITE);
         board[0][7] = new Rook(Color.WHITE);
@@ -72,8 +72,8 @@ public class Board {
         board[7][0] = new Rook(Color.BLACK);
         board[7][1] = new Knight(Color.BLACK);
         board[7][2] = new Bishop(Color.BLACK);
-        board[7][3] = new King(Color.BLACK);
-        board[7][4] = new Queen(Color.BLACK);
+        board[7][3] = new Queen(Color.BLACK);
+        board[7][4] = new King(Color.BLACK);
         board[7][5] = new Bishop(Color.BLACK);
         board[7][6] = new Knight(Color.BLACK);
         board[7][7] = new Rook(Color.BLACK);
