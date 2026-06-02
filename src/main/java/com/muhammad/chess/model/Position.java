@@ -37,18 +37,11 @@ public class Position {
     }
 
     @Override
-    public boolean equals(Object obj){
-        if (this == obj){
-            return true;
+    public boolean equals(Object obj) {
+        if(obj instanceof Position pos){
+            return pos.getRow() == row && pos.getCol() == col;
         }
-
-        if(obj instanceof  Position){
-            Position pos = (Position) obj;
-            return row == pos.getRow() && col == pos.getCol();
-        }
-        else{
-            return false;
-        }
+        return false;
     }
 
     @Override
