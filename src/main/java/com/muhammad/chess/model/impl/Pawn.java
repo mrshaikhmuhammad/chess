@@ -5,47 +5,42 @@ import com.muhammad.chess.model.*;
 import java.util.*;
 
 public class Pawn extends Piece {
-    private boolean initial;
+    private boolean isFirstMove;
 
     public Pawn(Color color) {
         super(color);
-        initial = true;
-    }
-
-    public void setInitial(boolean value){
-        initial = value;
+        isFirstMove = true;
     }
 
     @Override
-    public List<int[]> getMoves(int row, int col, Board board){
-        List<int[]> moves = new ArrayList<>();
+    public List<Position> getMoves(int row, int col, Board board){
+        List<Position> moves = new ArrayList<>(4);
         int direction = ( getColor() == Color.WHITE )? 1 : -1;
 
-        row = row + direction;
-        if(checkMove(row, col, board)){
-            moves.add(new int[]{row, col});
+        if(canOccupy(row+direction, col, board)){
+            moves.add(new Position(row+direction, col));
 
-            if(initial && checkMove(row+direction, col, board)){
-                moves.add(new int[]{row+direction, col});
+            if(isFirstMove && canOccupy(row+ 2 * direction, col, board)){
+                moves.add(new Position(row + 2 * direction, col));
             }
         }
 
-        if(checkKill(row, col+1, board)){
-            moves.add(new int[]{row, col+1});
+        if(canKill(row+direction, col+1, board)){
+            moves.add(new Position(row+direction, col+1));
         }
-        if(checkKill(row, col-1, board)){
-            moves.add(new int[]{row, col-1});
+        if(canKill(row+direction, col-1, board)){
+            moves.add(new Position(row+direction, col-1));
         }
         return moves;
     }
 
     @Override
     public String toString(){
-        if(super.getColor() == Color.WHITE){
-            return "♙";
-        }
-        else{
-            return "♟";
-        }
+        return (super.getColor() == Color.WHITE)?"♙":"♟";
+    }
+
+    @Override
+    public void onMove(){
+        isFirstMove = false;
     }
 }

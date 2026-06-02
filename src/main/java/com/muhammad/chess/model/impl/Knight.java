@@ -1,11 +1,9 @@
 package com.muhammad.chess.model.impl;
 
-import com.muhammad.chess.model.Board;
-import com.muhammad.chess.enums.Color;
-import com.muhammad.chess.model.Piece;
+import com.muhammad.chess.enums.*;
+import com.muhammad.chess.model.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Knight extends Piece {
     public Knight(Color color) {
@@ -13,37 +11,32 @@ public class Knight extends Piece {
     }
 
     @Override
-    public List<int[]> getMoves(int row, int col, Board board) {
-        List<int[]> moves = new ArrayList<>();
+    public List<Position> getMoves(int row, int col, Board board) {
+        int newRow, newCol;
+        List<Position> moves = new ArrayList<>();
         int[][] directions = {
             { 2,  1}, { 2, -1}, {-2,  1}, {-2, -1},
             { 1,  2}, { 1, -2}, {-1,  2}, {-1, -2}
         };
 
         for (int[] dir : directions) {
-            int newRow = row + dir[0];
-            int newCol = col + dir[1];
+            newRow = row + dir[0];
+            newCol = col + dir[1];
 
-            if (checkMove(newRow, newCol, board)) {
-                moves.add(new int[]{newRow, newCol});
-            } else if (checkKill(newRow, newCol, board)) {
-                moves.add(new int[]{newRow, newCol});
+            if (canOccupy(newRow, newCol, board)) {
+                moves.add(new Position(newRow, newCol));
+            } else if (canKill(newRow, newCol, board)) {
+                moves.add(new Position(newRow, newCol));
                 break;
             } else {
                 break;
             }
-
         }
         return moves;
     }
 
     @Override
     public String toString(){
-        if(super.getColor() == Color.WHITE){
-            return "♘";
-        }
-        else{
-            return "♞";
-        }
+        return (super.getColor() == Color.WHITE)?"♘":"♞";
     }
 }
