@@ -1,6 +1,6 @@
 package com.muhammad.chess.model;
 
-import java.util.Objects;
+import java.util.*;
 
 public class Position {
     private int row;
@@ -16,9 +16,17 @@ public class Position {
         }
     }
 
+    public Position(String position){
+        this(
+            Character.toLowerCase(position.charAt(0))  - 'a',
+            position.charAt(1) - '1'
+        );
+    }
+
     public int getCol() {
         return col;
     }
+
     public int getRow() {
         return row;
     }
@@ -27,6 +35,7 @@ public class Position {
     public String toString(){
         return "[ " + row + ", " + col + " ]";
     }
+
     @Override
     public boolean equals(Object obj){
         if (this == obj){
@@ -41,6 +50,7 @@ public class Position {
             return false;
         }
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(row, col);
