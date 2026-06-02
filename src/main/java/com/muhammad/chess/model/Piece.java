@@ -5,49 +5,39 @@ import com.muhammad.chess.enums.Color;
 import java.util.List;
 
 public abstract class Piece {
-    //white if color = 1 else black
+
     private Color color;
 
     public Piece(Color color){
         this.color = color;
     }
+
     public Color getColor(){
         return color;
     }
 
-    //True means both belong to same party
-    public boolean checkEnemy(Piece piece){
-        if (piece != null){
-            return this.color != piece.getColor();
-        }
-        return false;
+    public static boolean isInBox(int row, int col){
+        return row >= 0 && row < 8  &&  col >= 0 && col < 8;
     }
 
-    //True means valid
-    private boolean checkLocation(int row, int col){
-        return ( row>=0 && row<8 ) && ( col>=0 && col<8 );
+    public boolean isEnemy(Piece piece){
+        return piece != null && this.color != piece.getColor();
     }
 
-    //Checks can piece move thier
-    public boolean checkMove(int row, int col, Board board){
-        if(checkLocation(row, col)){
-            Piece piece = board.getPiece(row, col);
-            if(piece == null){
-                return true;
-            }
-        }
-        return false;
+    public boolean canOccupy(int row, int col, Board board){
+        return isInBox(row, col) && board.getPiece(row, col) == null;
     }
 
-    public boolean checkKill(int row, int col, Board board){
-        if(checkLocation(row, col)){
-            Piece piece = board.getPiece(row, col);
-            if(checkEnemy(piece)){
-                return true;
-            }
-        }
-        return false;
+    public boolean canKill(int row, int col, Board board){
+        return isInBox(row, col) && isEnemy(board.getPiece(row, col));
     }
 
-    public abstract List<int[]> getMoves(int row, int col, Board board);
+    public void onMove(){
+        return;
+    }
+
+    public List<Position> getMoves(Position position, Board board){
+        return getMoves(position.getRow(), position.getCol(), board);
+    }
+    public abstract List<Position> getMoves(int row, int col, Board board);
 }
