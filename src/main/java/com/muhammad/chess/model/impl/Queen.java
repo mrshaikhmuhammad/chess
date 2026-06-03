@@ -25,12 +25,17 @@ public class Queen extends Piece {
                 newRow = row + dir[0] * i;
                 newCol = col + dir[1] * i;
 
-                if (canOccupy(newRow, newCol, board)) {
-                    moves.add(new Position(newRow, newCol));
-                } else if (canKill(newRow, newCol, board)) {
-                    moves.add(new Position(newRow, newCol));
-                    break;
-                } else {
+                if(isInBox(newRow, newCol)) {
+                    if (canOccupy(newRow, newCol, board)) {
+                        moves.add(new Position(newRow, newCol));
+                    } else if (canKill(newRow, newCol, board)) {
+                        moves.add(new Position(newRow, newCol));
+                        break;
+                    } else {
+                        break;
+                    }
+                }
+                else{
                     break;
                 }
             }

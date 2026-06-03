@@ -23,13 +23,8 @@ public class King extends Piece {
             newRow = row + dir[0];
             newCol = col + dir[1];
 
-            if (canOccupy(newRow, newCol, board)) {
+            if (isInBox(newRow, newCol) && (canOccupy(newRow, newCol, board) || canKill(newRow, newCol, board))) {
                 moves.add(new Position(newRow, newCol));
-            } else if (canKill(newRow, newCol, board)) {
-                moves.add(new Position(newRow, newCol));
-                break;
-            } else {
-                break;
             }
         }
         return moves;

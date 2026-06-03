@@ -19,17 +19,23 @@ public class Bishop extends Piece {
         for (int[] dir : directions) {
             for (int i = 1; i < 8; i++) {
                 newRow = row + dir[0] * i;
-                newCol = row + dir[1] * i;
+                newCol = col + dir[1] * i;
 
-                if (canOccupy(newRow, newCol, board)) {
-                    moves.add(new Position(newRow, newCol));
-                } else if (canKill(newRow, newCol, board)) {
-                    moves.add(new Position(newRow, newCol));
-                    break;
-                } else {
+                if(isInBox(newRow,newCol)) {
+                    if (canOccupy(newRow, newCol, board)) {
+                        moves.add(new Position(newRow, newCol));
+                    } else if (canKill(newRow, newCol, board)) {
+                        moves.add(new Position(newRow, newCol));
+                        break;
+                    } else {
+                        break;
+                    }
+                }
+                else{
                     break;
                 }
             }
+
         }
         return moves;
     }

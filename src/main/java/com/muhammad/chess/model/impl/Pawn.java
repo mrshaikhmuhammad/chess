@@ -17,18 +17,18 @@ public class Pawn extends Piece {
         List<Position> moves = new ArrayList<>(4);
         int direction = ( getColor() == Color.WHITE )? 1 : -1;
 
-        if(canOccupy(row+direction, col, board)){
+        if(isInBox(row+direction, col) && canOccupy(row+direction, col, board)){
             moves.add(new Position(row+direction, col));
 
-            if(isFirstMove && canOccupy(row+ 2 * direction, col, board)){
+            if(isFirstMove &&  isInBox(row+ 2 * direction, col) && canOccupy(row+ 2 * direction, col, board)){
                 moves.add(new Position(row + 2 * direction, col));
             }
         }
 
-        if(canKill(row+direction, col+1, board)){
+        if(isInBox(row + direction, col+1) && canKill(row+direction, col+1, board)){
             moves.add(new Position(row+direction, col+1));
         }
-        if(canKill(row+direction, col-1, board)){
+        if(isInBox(row + direction, col-1) && canKill(row+direction, col-1, board)){
             moves.add(new Position(row+direction, col-1));
         }
         return moves;
